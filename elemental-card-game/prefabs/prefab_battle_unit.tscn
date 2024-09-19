@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbbw0y8mbf3mg"]
+
+[ext_resource type="Script" path="res://scripts/battle/scr_battle_unit.gd" id="1_jqtyc"]
+[ext_resource type="Texture2D" uid="uid://bmfducu0ysjbx" path="res://textures/icon.svg" id="2_he1kb"]
+
+[node name="Unit" type="Node3D"]
+script = ExtResource("1_jqtyc")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+texture = ExtResource("2_he1kb")

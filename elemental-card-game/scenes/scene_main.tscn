@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://f6hvdoajj3lm"]
+
+[ext_resource type="Script" path="res://scripts/managers/scr_main_manager.gd" id="1_yeiyh"]
+[ext_resource type="Script" path="res://scripts/managers/scr_load_manager.gd" id="2_b18oi"]
+[ext_resource type="Script" path="res://scripts/loading/scr_load_manager_audio.gd" id="3_2viap"]
+[ext_resource type="Script" path="res://scripts/loading/scr_load_manager_scenes.gd" id="3_g48rc"]
+[ext_resource type="Script" path="res://scripts/loading/scr_load_manager_prefabs.gd" id="4_pfscr"]
+
+[node name="SceneMain" type="Node3D"]
+script = ExtResource("1_yeiyh")
+
+[node name="LoadManager" type="Node" parent="."]
+script = ExtResource("2_b18oi")
+
+[node name="Audio" type="Node" parent="LoadManager"]
+script = ExtResource("3_2viap")
+
+[node name="Prefabs" type="Node" parent="LoadManager"]
+script = ExtResource("4_pfscr")
+
+[node name="Scenes" type="Node" parent="LoadManager"]
+script = ExtResource("3_g48rc")
+
+[node name="ParentActiveScene" type="Node3D" parent="."]
