@@ -3,6 +3,8 @@ extends Node3D
 
 static var ally_list: Array[BattleUnit]
 static var opponent_list: Array[BattleUnit]
+# Managers
+static var hand_manager: HandManager
 # Important nodes
 static var camera: Camera3D
 static var parent_3d: Node3D
@@ -11,21 +13,32 @@ static var parent_control: Control
 static var parent_ally: Node3D
 static var parent_opponent: Node3D
 
+@export var test_card: Card
+
 # Main methods
 
 func _ready() -> void:
 	_set_up()
 	_set_up_battle()
+	
+	_populate_hand()
 
 
 func _set_up():
+	hand_manager = $HandManager
 	camera = get_viewport().get_camera_3d()
 	parent_3d = $Node3D
 	parent_2d = $Node2D
 	parent_control = $Control
 	
+	# 3D
 	parent_ally = parent_3d.get_node("ParentAlly")
 	parent_opponent = parent_3d.get_node("ParentOpponent")
+	#2D
+	var hand_card_container: BattleHandCardContainer = parent_2d.get_node("HandCardContainer")
+	
+	# Set everything up
+	hand_manager.set_up(hand_card_container)
 
 
 func _set_up_battle():
@@ -36,8 +49,19 @@ func _set_up_battle():
 	ally.set_up()
 
 
+func _populate_hand():
+	hand_manager.add_card(MainManager.card_manager.create_hand_card(test_card))
+	hand_manager.add_card(MainManager.card_manager.create_hand_card(test_card))
+	hand_manager.add_card(MainManager.card_manager.create_hand_card(test_card))
+	hand_manager.add_card(MainManager.card_manager.create_hand_card(test_card))
+	hand_manager.add_card(MainManager.card_manager.create_hand_card(test_card))
+
+
 func _process(_delta: float) -> void:
 	_handle_debug_input()
+
+# Public methods
+
 
 
 # Debugging

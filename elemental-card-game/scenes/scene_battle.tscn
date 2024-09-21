@@ -1,31 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj5w8smao8t3y"]
+[gd_scene load_steps=9 format=3 uid="uid://bj5w8smao8t3y"]
 
-[ext_resource type="Script" path="res://scripts/managers/scr_battle_manager.gd" id="1_5p180"]
-[ext_resource type="PackedScene" uid="uid://cbbw0y8mbf3mg" path="res://prefabs/prefab_battle_unit.tscn" id="2_2ufbo"]
+[ext_resource type="Script" path="res://scripts/managers/battle/scr_battle_manager.gd" id="1_5p180"]
+[ext_resource type="Resource" uid="uid://h6wpo6a185xc" path="res://custom_resources/cards/resource_card_test.tres" id="2_120ty"]
+[ext_resource type="Environment" uid="uid://dnyvntln76ypv" path="res://environments/env_battle.tres" id="2_f5olr"]
+[ext_resource type="Script" path="res://scripts/managers/battle/scr_hand_manager.gd" id="3_xkf0i"]
+[ext_resource type="Script" path="res://scripts/battle/screen_space/hand/scr_battle_hand_card_container.gd" id="4_57jsv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pfb3i"]
-size = Vector2(10, 10)
+size = Vector2(20, 20)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w3j1d"]
+top_radius = 3.5
+bottom_radius = 3.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7gpna"]
+top_radius = 3.5
+bottom_radius = 3.5
 
 [node name="SceneBattle" type="Node3D"]
 script = ExtResource("1_5p180")
+test_card = ExtResource("2_120ty")
+
+[node name="HandManager" type="Node" parent="."]
+script = ExtResource("3_xkf0i")
 
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.919637, 0.392771, 0, -0.392771, 0.919637, 0, 6.09091, 9.2139)
+transform = Transform3D(1, 0, 0, 0, 0.990302, 0.138931, 0, -0.138931, 0.990302, 0, 3.09091, 7.2139)
+environment = ExtResource("2_f5olr")
 fov = 64.1465
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0, 9, 0)
+light_color = Color(1, 0.996, 0.97, 1)
+light_energy = 0.6
+shadow_enabled = true
 
 [node name="MeshInstance3D_Floor" type="MeshInstance3D" parent="Node3D"]
 mesh = SubResource("PlaneMesh_pfb3i")
 skeleton = NodePath("../..")
 
-[node name="ParentAlly" type="Node3D" parent="Node3D"]
+[node name="MeshInstance3D_FloorAlly" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.9, 0)
+mesh = SubResource("CylinderMesh_w3j1d")
 
-[node name="Unit" parent="Node3D/ParentAlly" instance=ExtResource("2_2ufbo")]
+[node name="MeshInstance3D_FloorOpponent" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.9, 0)
+mesh = SubResource("CylinderMesh_7gpna")
+
+[node name="ParentAlly" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 
 [node name="ParentOpponent" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="UnitInfoContainer" type="Node2D" parent="Node2D"]
+
+[node name="Sprite2D_Health" type="Sprite2D" parent="Node2D/UnitInfoContainer"]
+
+[node name="HandCardContainer" type="Node2D" parent="Node2D"]
+script = ExtResource("4_57jsv")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

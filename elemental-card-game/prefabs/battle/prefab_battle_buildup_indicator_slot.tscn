@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsl27epbl878e"]
+
+[ext_resource type="Script" path="res://scripts/battle/screen_space/buildup_indicator/scr_battle_buildup_indicator_slot.gd" id="1_nsaj1"]
+[ext_resource type="Texture2D" uid="uid://bovwcjbc8fmua" path="res://textures/generic/tex_generic_circle_filled_blur_16.png" id="2_0l0mb"]
+[ext_resource type="Texture2D" uid="uid://c5vuv0lolu18u" path="res://textures/generic/tex_generic_circle_filled.png" id="3_y34yr"]
+
+[node name="BuildupIndicatorSlot" type="Node2D"]
+script = ExtResource("1_nsaj1")
+
+[node name="Sprite2D_Back" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.392157)
+z_index = -1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_0l0mb")
+
+[node name="Spark" type="Node2D" parent="."]
+
+[node name="Sprite2D_Spark" type="Sprite2D" parent="Spark"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_y34yr")

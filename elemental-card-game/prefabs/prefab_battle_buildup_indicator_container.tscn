@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dludecj7fhwhk"]
-
-[ext_resource type="Script" path="res://scripts/battle/scr_battle_buildup_indicator_container.gd" id="1_j7onm"]
-
-[node name="BuildupIndicatorContainer" type="Node2D"]
-script = ExtResource("1_j7onm")

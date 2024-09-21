@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://h6wpo6a185xc"]
+
+[ext_resource type="Texture2D" uid="uid://bmfducu0ysjbx" path="res://textures/icon.svg" id="1_38oex"]
+[ext_resource type="Script" path="res://scripts/classes/scr_card.gd" id="1_0148n"]
+
+[resource]
+script = ExtResource("1_0148n")
+art_texture = ExtResource("1_38oex")
+title = "Flame Kick"
+description = ""
+flavor_text = "A kick is always a trusted combat move."
+base_damage = 1
+base_buildup = 2

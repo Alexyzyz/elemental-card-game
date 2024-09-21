@@ -28,5 +28,6 @@ func _process(_delta: float) -> void:
 # Private methods
 
 func _update_position():
-	var screen_pos: Vector2 = BattleManager.camera.unproject_position(unit.global_position - 0.5 * Vector3.UP)
+	var screen_pos: Vector2 = \
+		BattleManager.camera.unproject_position(unit.global_position + 0.5 * Vector3.UP)
 	global_position = screen_pos
