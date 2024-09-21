@@ -5,7 +5,7 @@ var show_viewport_center: bool
 
 # Main methods
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	queue_redraw()
 
 

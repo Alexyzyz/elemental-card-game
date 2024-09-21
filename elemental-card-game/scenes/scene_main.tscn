@@ -34,6 +34,7 @@ script = ExtResource("7_pntek")
 [node name="ParentActiveScene" type="Node3D" parent="."]
 
 [node name="ParentDebug" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

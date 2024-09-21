@@ -20,7 +20,7 @@ func set_up(p_hand_card_container: BattleHandCardContainer):
 	hand_card_container.set_up(card_list)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_update_hovered_card()
 	pass
 

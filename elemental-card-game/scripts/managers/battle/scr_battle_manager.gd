@@ -42,11 +42,8 @@ func _set_up():
 
 
 func _set_up_battle():
-	var ally: BattleUnit = MainManager.load_manager.prefabs.battle_unit.instantiate()
-	parent_ally.add_child(ally)
-	
-	ally_list.push_back(ally)
-	ally.set_up()
+	_spawn_units(3, parent_ally, ally_list)
+	_spawn_units(2, parent_opponent, opponent_list)
 
 
 func _populate_hand():
@@ -60,8 +57,23 @@ func _populate_hand():
 func _process(_delta: float) -> void:
 	_handle_debug_input()
 
+
 # Public methods
 
+# Private methods
+
+func _spawn_units(unit_count: int, unit_parent: Node3D, unit_list: Array[BattleUnit]):
+	for i in unit_count:
+		var unit: BattleUnit = MainManager.load_manager.prefabs.battle_unit.instantiate()
+		unit_parent.add_child(unit)
+		
+		unit_list.push_back(unit)
+		unit.set_up()
+		
+		var t: float = float(i) / float(unit_count)
+		var angle: float = 0.4 * PI + lerpf(0, 2 * PI, t)
+		var unit_pos := 1.5 * Vector3(cos(angle), 0, sin(angle))
+		unit.position = unit_pos
 
 
 # Debugging
