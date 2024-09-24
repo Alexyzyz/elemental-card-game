@@ -31,12 +31,23 @@ func _process(_delta: float) -> void:
 
 func add_card(new_card: BattleHandCard):
 	card_list.push_back(new_card)
+	new_card.hand_index = card_list.size() - 1
 	hand_card_container.add_card(new_card)
 	hand_updated.emit()
 
 
 func remove_card():
+	for i in card_list.size():
+		var card: BattleHandCard = card_list[i]
+		card.hand_index = i
 	hand_updated.emit()
+
+
+func unselect_card():
+	if !selected_card:
+		return
+	selected_card.set_selected_state(false)
+	selected_card = null
 
 
 # Private methods
@@ -54,11 +65,12 @@ func _handle_select_card_input():
 		
 		hovered_card.set_selected_state(true)
 		selected_card = hovered_card
+		card_selected.emit(selected_card, selected_card.hand_index)
 		return
 	
 	# Un-select that card instead.
-	selected_card.set_selected_state(false)
-	selected_card = null
+	unselect_card()
+	card_selected.emit(null, -1)
 
 
 func _update_hovered_card():
@@ -76,21 +88,16 @@ func _update_hovered_card():
 	
 	var closest_card: Dictionary = {
 		"card": null,
-		"index": -1,
 		"dot_product": -1,
 	}
 	
-	var card_index: int = 0
 	for card in card_list:
 		var card_to_hand_vec: Vector2 = (card.global_position - hand_origin).normalized()
 		var dot_product: float = cursor_to_hand_vec.dot(card_to_hand_vec)
 		
 		if dot_product > closest_card.dot_product:
 			closest_card.card = card
-			closest_card.index = card_index
 			closest_card.dot_product = dot_product
-		
-		card_index += 1
 	
 	if closest_card.card == hovered_card:
 		return
@@ -101,4 +108,4 @@ func _update_hovered_card():
 	if closest_card.card:
 		hovered_card = closest_card.card
 		closest_card.card.set_hovered_state(true)
-		card_hovered.emit(hovered_card, closest_card.index)
+		card_hovered.emit(hovered_card, closest_card.card.hand_index)

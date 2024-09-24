@@ -10,6 +10,8 @@ enum State {
 var state: State
 var is_hovered: bool
 var is_selected: bool
+## This card's position in the hand.
+var hand_index: int
 # Animations
 var hand_position_t: float
 var hand_position_t_target: float

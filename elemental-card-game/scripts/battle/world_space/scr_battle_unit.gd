@@ -1,8 +1,12 @@
 class_name BattleUnit
 extends Node3D
 
+signal destroyed
+
 var health: int
 var health_max: int
+var is_hovered: bool
+var is_selected: bool
 # Screen-space nodes
 var buildup_indicator_container: BattleBuildupIndicatorContainer
 
@@ -18,6 +22,12 @@ func set_up():
 func _process(_delta: float) -> void:
 	# _debug_follow_mouse()
 	pass
+
+
+# Public methods
+
+func destroy():
+	destroyed.emit()
 
 
 # Debugging

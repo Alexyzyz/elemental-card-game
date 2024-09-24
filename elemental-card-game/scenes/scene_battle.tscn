@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bj5w8smao8t3y"]
+[gd_scene load_steps=10 format=3 uid="uid://bj5w8smao8t3y"]
 
 [ext_resource type="Script" path="res://scripts/managers/battle/scr_battle_manager.gd" id="1_5p180"]
 [ext_resource type="Resource" uid="uid://h6wpo6a185xc" path="res://custom_resources/cards/resource_card_test.tres" id="2_120ty"]
 [ext_resource type="Environment" uid="uid://dnyvntln76ypv" path="res://environments/env_battle.tres" id="2_f5olr"]
 [ext_resource type="Script" path="res://scripts/managers/battle/scr_hand_manager.gd" id="3_xkf0i"]
 [ext_resource type="Script" path="res://scripts/battle/screen_space/hand/scr_battle_hand_card_container.gd" id="4_57jsv"]
+[ext_resource type="Script" path="res://scripts/battle/world_space/scr_battle_unit_selection_spotlight.gd" id="5_8ut1k"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pfb3i"]
 size = Vector2(20, 20)
@@ -27,17 +28,30 @@ script = ExtResource("3_xkf0i")
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.990302, 0.138931, 0, -0.138931, 0.990302, 0, 3.09091, 7.2139)
+transform = Transform3D(1, 0, 0, 0, 0.946046, 0.324033, 0, -0.324033, 0.946046, 0, 5.15193, 9.60333)
 environment = ExtResource("2_f5olr")
 fov = 64.1465
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0, 9, 0)
 light_color = Color(1, 0.996, 0.97, 1)
-light_energy = 0.6
+light_energy = 0.25
 shadow_enabled = true
 
+[node name="UnitSelectionSpotlight" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+script = ExtResource("5_8ut1k")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Node3D/UnitSelectionSpotlight"]
+transform = Transform3D(-1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, 0, 0, 0)
+light_energy = 5.0
+spot_range = 10.0
+spot_attenuation = 2.0
+spot_angle = 20.0
+spot_angle_attenuation = 0.170756
+
 [node name="MeshInstance3D_Floor" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 mesh = SubResource("PlaneMesh_pfb3i")
 skeleton = NodePath("../..")
 

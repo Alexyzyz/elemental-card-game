@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbbw0y8mbf3mg"]
+[gd_scene load_steps=4 format=3 uid="uid://cbbw0y8mbf3mg"]
 
 [ext_resource type="Script" path="res://scripts/battle/world_space/scr_battle_unit.gd" id="1_jqtyc"]
 [ext_resource type="Texture2D" uid="uid://bmfducu0ysjbx" path="res://textures/icon.svg" id="2_he1kb"]
 
-[node name="Unit" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j6qee"]
+
+[node name="Unit" type="Node3D" groups=["unit"]]
 script = ExtResource("1_jqtyc")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 alpha_cut = 2
 texture = ExtResource("2_he1kb")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_j6qee")

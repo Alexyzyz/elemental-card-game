@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://f6hvdoajj3lm"]
+[gd_scene load_steps=11 format=3 uid="uid://f6hvdoajj3lm"]
 
 [ext_resource type="Script" path="res://scripts/managers/general/scr_main_manager.gd" id="1_yeiyh"]
 [ext_resource type="Script" path="res://scripts/managers/general/scr_load_manager.gd" id="2_b18oi"]
 [ext_resource type="Script" path="res://scripts/loading/scr_load_manager_audio.gd" id="3_2viap"]
 [ext_resource type="Script" path="res://scripts/loading/scr_load_manager_scenes.gd" id="3_g48rc"]
 [ext_resource type="Script" path="res://scripts/loading/scr_load_manager_prefabs.gd" id="4_pfscr"]
+[ext_resource type="Script" path="res://scripts/loading/scr_load_manager_misc.gd" id="6_5fuex"]
 [ext_resource type="Script" path="res://scripts/managers/general/scr_card_manager.gd" id="6_h2f44"]
 [ext_resource type="Script" path="res://scripts/managers/general/scr_debug_manager.gd" id="7_pntek"]
 [ext_resource type="Script" path="res://scripts/debug/scr_debug_parent.gd" id="8_0k0i1"]
@@ -24,6 +25,9 @@ script = ExtResource("4_pfscr")
 
 [node name="Scenes" type="Node" parent="LoadManager"]
 script = ExtResource("3_g48rc")
+
+[node name="Misc" type="Node" parent="LoadManager"]
+script = ExtResource("6_5fuex")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("6_h2f44")
