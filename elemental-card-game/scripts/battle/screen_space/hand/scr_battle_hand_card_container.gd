@@ -46,10 +46,12 @@ func _update_card_positions():
 		var card: BattleHandCard = card_list[i]
 		var t: float = float(i) / float(card_count - 1)
 		
-		# Push neighboring cards away.
-		if abs(i - hovered_card_index) < 2:
-			t += 0.02 * (i - hovered_card_index)
-			pass
+		if hovered_card_index != -1:
+			# If a card is hovered,
+			# push its neighbors away.
+			if abs(i - hovered_card_index) < 2:
+				t += 0.02 * (i - hovered_card_index)
+				pass
 		
 		card.hand_position_t_target = t
 

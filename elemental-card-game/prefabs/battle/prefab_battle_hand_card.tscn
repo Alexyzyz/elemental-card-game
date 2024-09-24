@@ -6,7 +6,9 @@
 [node name="BattleHandCard" type="Node2D"]
 script = ExtResource("1_qubn8")
 
-[node name="Sprite2D_Dropshadow" type="Sprite2D" parent="."]
+[node name="Rig" type="Node2D" parent="."]
+
+[node name="Sprite2D_Dropshadow" type="Sprite2D" parent="Rig"]
 self_modulate = Color(0, 0, 0, 0.431373)
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_4a6x4")
